@@ -8,14 +8,20 @@ A real simple logger application
 
 ## Usage
 
-
-
 `const log = require('log')(options)`
 
 Note: The options Part may be omitted, as all parts are optional, but using the name is recommended, as without it, the folder-name will be used
 
-Options:
+### Methods
 
+`log.info('This is an Information')`
+`log.warn('This is a Warning')`
+`log.error('This is an Error')`
+`log.debug('This is a Debug Message')`
+
+### Options
+
+```json
 {
   name: 'Name of App',
   hostname: 'Server Hostname',
@@ -27,3 +33,4 @@ Options:
     }
   ]
 }
+```
