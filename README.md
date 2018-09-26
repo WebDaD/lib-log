@@ -1,6 +1,7 @@
 # log.js
 
-A real simple logger application
+A real simple logger application.
+May Optional Log to A File and / or a Graylog-Server
 
 ## Installation
 
@@ -14,17 +15,17 @@ Note: The options Part may be omitted, as all parts are optional, but using the 
 
 ### Methods
 
-`log.info('This is an Information')`
-`log.warn('This is a Warning')`
-`log.error('This is an Error')`
-`log.debug('This is a Debug Message')`
+* `log.info('This is an Information')`
+* `log.warn('This is a Warning')`
+* `log.error('This is an Error')`
+* `log.debug('This is a Debug Message')`
 
 ### Options
 
 ```json
 {
-  name: 'Name of App',
-  hostname: 'Server Hostname',
+  name: 'Name of App. Default: Name of BaseFolder',
+  hostname: 'Server Hostname, Default: os.hostname()',
   file: 'File to Append Log to',
   graylog: [
     {
