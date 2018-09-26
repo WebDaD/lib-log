@@ -2,7 +2,13 @@
 
 A real simple logger application
 
+## Installation
+
+`npm install --save git+ssh://tfs-br-prod.br-edv.brnet.int:22/ArGOS/lib/_git/log`
+
 ## Usage
+
+
 
 `const log = require('log')(options)`
 
