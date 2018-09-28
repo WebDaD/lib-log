@@ -9,7 +9,8 @@ May Optional Log to A File and / or a Graylog-Server
 
 ## Usage
 
-`const log = require('log')(options)`
+`const Log = require('log')`
+`let log = new Log(options)`
 
 Note: The options Part may be omitted, as all parts are optional, but using the name is recommended, as without it, the folder-name will be used
 

@@ -1,4 +1,4 @@
-module.exports = function (options) {
+function Log (options) {
   this.moment = require('moment')
   this.path = require('path')
   this.fs = require('fs')
@@ -68,3 +68,4 @@ module.exports = function (options) {
   }
   return this
 }
+module.exports = Log

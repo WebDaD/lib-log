@@ -1,4 +1,6 @@
-const log = require('../index.js')({
+const Log = require('../index.js')
+
+let log = new Log({
   name: 'Sample-Application',
   hostname: 'test-server'
 })
