@@ -1,13 +1,19 @@
 function Log (options) {
-  this.fs = require('fs')
-  this.os = require('os')
   this.options = options || {}
   if (this.options.name) {
     this.name = this.options.name
   } else {
     this.name = require('./package.json').name
   }
-  this.hostname = (this.options.hostname) ? this.options.hostname : this.os.hostname()
+  if (this.options.hostname) {
+    this.hostname = this.options.hostname
+  } else {
+    let os = require('os')
+    this.hostname = os.hostname()
+  }
+  if (this.options.file) {
+    this.fs = require('fs')
+  }
   if (this.options.graylog) {
     this.graylog2 = require('graylog2')
     this.graylogger = new this.graylog2.graylog({ // eslint-disable-line new-cap
