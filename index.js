@@ -1,5 +1,4 @@
 function Log (options) {
-  this.moment = require('moment')
   this.path = require('path')
   this.fs = require('fs')
   this.os = require('os')
@@ -27,7 +26,7 @@ function Log (options) {
     this.log('DEBUG', message)
   }
   this.log = function (tag, message) {
-    let msg = this.moment().format('YYYY-MM-DDTHH:mm:ss') + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message
+    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message
     switch (tag) {
       case 'INFO':
         console.log(msg)
@@ -50,21 +49,26 @@ function Log (options) {
     if (this.options.graylog) {
       switch (tag) {
         case 'INFO':
-          this.graylogger.info(msg)
+          this.graylogger.info(message)
           break
         case 'WARN':
-          this.graylogger.warning(msg)
+          this.graylogger.warning(message)
           break
         case 'ERROR':
-          this.graylogger.error(msg)
+          this.graylogger.error(message)
           break
         case 'DEBUG':
-          this.graylogger.debug(msg)
+          this.graylogger.debug(message)
           break
         default:
-          this.graylogger.notice(msg)
+          this.graylogger.notice(message)
       }
     }
+  }
+  this.getDate = function () {
+    var tzoffset = (new Date()).getTimezoneOffset() * 60000 // offset in milliseconds
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1)
+    return localISOTime.split('.')[0].trim()
   }
   return this
 }
