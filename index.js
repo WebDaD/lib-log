@@ -19,6 +19,12 @@ function Log (options) {
   this.info = function (message) {
     this.log('INFO', message)
   }
+  this.notice = function (message) {
+    this.log('NOTICE', message)
+  }
+  this.fatal = function (message) {
+    this.log('FATAL', message)
+  }
   this.warn = function (message) {
     this.log('WARN', message)
   }
@@ -34,10 +40,16 @@ function Log (options) {
       case 'INFO':
         console.log(msg)
         break
+      case 'NOTICE':
+        console.log(msg)
+        break
       case 'WARN':
         console.warn(msg)
         break
       case 'ERROR':
+        console.error(msg)
+        break
+      case 'FATAL':
         console.error(msg)
         break
       case 'DEBUG':
@@ -54,11 +66,17 @@ function Log (options) {
         case 'INFO':
           this.graylogger.info(message)
           break
+        case 'NOTICE':
+          this.graylogger.notice(message)
+          break
         case 'WARN':
           this.graylogger.warning(message)
           break
         case 'ERROR':
           this.graylogger.error(message)
+          break
+        case 'FATAL':
+          this.graylogger.critical(message)
           break
         case 'DEBUG':
           this.graylogger.debug(message)
