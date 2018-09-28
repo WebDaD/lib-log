@@ -14,14 +14,6 @@ function Log (options) {
   if (this.options.file) {
     this.fs = require('fs')
   }
-  if (this.options.graylog) {
-    this.graylog2 = require('graylog2')
-    this.graylogger = new this.graylog2.graylog({ // eslint-disable-line new-cap
-      servers: this.options.graylog,
-      hostname: this.hostname,
-      facility: this.name
-    })
-  }
   this.info = function (message) {
     this.log('INFO', message)
   }
@@ -70,30 +62,6 @@ function Log (options) {
           console.error('Cannot write to File ' + this.options.file)
         }
       })
-    }
-    if (this.options.graylog) {
-      switch (tag) {
-        case 'INFO':
-          this.graylogger.info(message)
-          break
-        case 'NOTICE':
-          this.graylogger.notice(message)
-          break
-        case 'WARN':
-          this.graylogger.warning(message)
-          break
-        case 'ERROR':
-          this.graylogger.error(message)
-          break
-        case 'FATAL':
-          this.graylogger.critical(message)
-          break
-        case 'DEBUG':
-          this.graylogger.debug(message)
-          break
-        default:
-          this.graylogger.notice(message)
-      }
     }
   }
   this.getDate = function () {

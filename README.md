@@ -29,12 +29,6 @@ Note: The options Part may be omitted, as all parts are optional, but using the 
 {
   name: 'Name of App. Default: Name of BaseFolder',
   hostname: 'Server Hostname, Default: os.hostname()',
-  file: 'File to Append Log to',
-  graylog: [
-    {
-      server: 'graylog-server',
-      port: 'graylog-port'
-    }
-  ]
+  file: 'File to Append Log to'
 }
 ```
