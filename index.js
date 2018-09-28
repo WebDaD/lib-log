@@ -1,9 +1,12 @@
 function Log (options) {
-  this.path = require('path')
   this.fs = require('fs')
   this.os = require('os')
   this.options = options || {}
-  this.name = (this.options.name) ? this.options.name : this.path.basename(this.path.dirname(require.main.filename))
+  if (this.options.name) {
+    this.name = this.options.name
+  } else {
+    this.name = require('./package.json').name
+  }
   this.hostname = (this.options.hostname) ? this.options.hostname : this.os.hostname()
   if (this.options.graylog) {
     this.graylog2 = require('graylog2')
