@@ -59,7 +59,11 @@ function Log (options) {
         console.log(msg)
     }
     if (this.options.file) {
-      this.fs.appendFileSync(this.options.file, msg + '\n')
+      this.fs.appendFile(this.options.file, msg + '\n', function (error) {
+        if (error) {
+          console.error('Cannot write to File ' + this.options.file)
+        }
+      })
     }
     if (this.options.graylog) {
       switch (tag) {
