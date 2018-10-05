@@ -14,29 +14,41 @@ function Log (options) {
   if (this.options.file) {
     this.fs = require('fs')
   }
-  this.info = function (message) {
-    this.log('INFO', message)
+  this.info = function (message, tags) {
+    this.log('INFO', message, tags)
   }
-  this.notice = function (message) {
-    this.log('NOTICE', message)
+  this.notice = function (message, tags) {
+    this.log('NOTICE', message, tags)
   }
-  this.fatal = function (message) {
-    this.log('FATAL', message)
+  this.fatal = function (message, tags) {
+    this.log('FATAL', message, tags)
   }
-  this.warn = function (message) {
-    this.log('WARN', message)
+  this.warn = function (message, tags) {
+    this.log('WARN', message, tags)
   }
-  this.error = function (message) {
-    this.log('ERROR', message)
+  this.error = function (message, tags) {
+    this.log('ERROR', message, tags)
   }
-  this.debug = function (message) {
-    this.log('DEBUG', message)
+  this.debug = function (message, tags) {
+    this.log('DEBUG', message, tags)
   }
-  this.log = function (tag, message) {
-    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message
+  this.log = function (tag, message, tags) {
+    let tadd = ''
+    if (typeof tags !== 'undefined') {
+      if (Array.isArray(tags)) {
+        tadd = '#' + tags.join(' #')
+      } else if (tags.includes(' ')) {
+        tadd = '#' + tags.split(' ').join(' #')
+      } else if (tags.includes(',')) {
+        tadd = '#' + tags.split(',').join(' #')
+      } else {
+        tadd = '#' + tags
+      }
+    }
+    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message + '\t' + tadd
     switch (tag) {
       case 'INFO':
-        console.log(msg)
+        console.info(msg)
         break
       case 'NOTICE':
         console.log(msg)
