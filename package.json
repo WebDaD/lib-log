@@ -4,7 +4,7 @@
   "description": "A simple Logger with Options!",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- tests/test.js && rsync --remove-source-files -av --progress ./coverage ./docs/ && rm -Rf ./coverage",
+    "test": "nyc --reporter=html --reporter=text mocha -- tests/test.js && rsync --remove-source-files -av --progress ./coverage ./docs/ && rm -Rf ./coverage",
     "test-graphics":"istanbul cover _mocha -- tests/test.js -R mochawesome && rsync --remove-source-files -av --progress ./coverage ./docs/ && rm -Rf ./coverage  && rsync --remove-source-files -av --progress ./mochawesome-report ./docs/ && rm -Rf ./mochawesome-report"
   },
   "author": "Dominik Sigmund",
