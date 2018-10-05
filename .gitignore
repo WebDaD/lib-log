@@ -1,2 +1,4 @@
 node_modules
 samples/file.log
+coverage/
+mochawesome-report/

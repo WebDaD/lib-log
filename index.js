@@ -15,37 +15,37 @@ function Log (options) {
     this.fs = require('fs')
   }
   this.info = function (message, tags) {
-    this.log('INFO', message, tags)
+    return this.log('INFO', message, tags)
   }
   this.notice = function (message, tags) {
-    this.log('NOTICE', message, tags)
+    return this.log('NOTICE', message, tags)
   }
   this.fatal = function (message, tags) {
-    this.log('FATAL', message, tags)
+    return this.log('FATAL', message, tags)
   }
   this.warn = function (message, tags) {
-    this.log('WARN', message, tags)
+    return this.log('WARN', message, tags)
   }
   this.error = function (message, tags) {
-    this.log('ERROR', message, tags)
+    return this.log('ERROR', message, tags)
   }
   this.debug = function (message, tags) {
-    this.log('DEBUG', message, tags)
+    return this.log('DEBUG', message, tags)
   }
   this.log = function (tag, message, tags) {
     let tadd = ''
     if (typeof tags !== 'undefined') {
       if (Array.isArray(tags)) {
-        tadd = '#' + tags.join(' #')
+        tadd = ' #' + tags.join(' #')
       } else if (tags.includes(' ')) {
-        tadd = '#' + tags.split(' ').join(' #')
+        tadd = ' #' + tags.split(' ').join(' #')
       } else if (tags.includes(',')) {
-        tadd = '#' + tags.split(',').join(' #')
+        tadd = ' #' + tags.split(',').join(' #')
       } else {
-        tadd = '#' + tags
+        tadd = ' #' + tags
       }
     }
-    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message + '\t' + tadd
+    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message + tadd
     switch (tag) {
       case 'INFO':
         console.info(msg)
@@ -75,6 +75,7 @@ function Log (options) {
         }
       })
     }
+    return msg
   }
   this.getDate = function () {
     var tzoffset = (new Date()).getTimezoneOffset() * 60000 // offset in milliseconds
