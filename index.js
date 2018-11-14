@@ -1,5 +1,18 @@
 function Log (options) {
+  this.levels = {
+    'DEBUG': 5,
+    'INFO': 4,
+    'NOTICE': 3,
+    'WARN': 2,
+    'ERROR': 1,
+    'FATAL': 0
+  }
   this.options = options || {}
+  if (this.options.loglevel) { // DEBUG, INFO, NOTICE, WARN, ERROR, FATAL
+    this.loglevel = this.levels[this.options.loglevel]
+  } else {
+    this.loglevel = 2
+  }
   if (this.options.name) {
     this.name = this.options.name
   } else {
@@ -15,22 +28,46 @@ function Log (options) {
     this.fs = require('fs')
   }
   this.info = function (message, tags) {
-    return this.log('INFO', message, tags)
+    if (this.loglevel >= this.levels.INFO) {
+      return this.log('INFO', message, tags)
+    } else {
+      return ''
+    }
   }
   this.notice = function (message, tags) {
-    return this.log('NOTICE', message, tags)
+    if (this.loglevel >= this.levels.NOTICE) {
+      return this.log('NOTICE', message, tags)
+    } else {
+      return ''
+    }
   }
   this.fatal = function (message, tags) {
-    return this.log('FATAL', message, tags)
+    if (this.loglevel >= this.levels.FATAL) {
+      return this.log('FATAL', message, tags)
+    } else {
+      return ''
+    }
   }
   this.warn = function (message, tags) {
-    return this.log('WARN', message, tags)
+    if (this.loglevel >= this.levels.WARN) {
+      return this.log('WARN', message, tags)
+    } else {
+      return ''
+    }
   }
   this.error = function (message, tags) {
-    return this.log('ERROR', message, tags)
+    if (this.loglevel >= this.levels.ERROR) {
+      return this.log('ERROR', message, tags)
+    } else {
+      return ''
+    }
   }
   this.debug = function (message, tags) {
-    return this.log('DEBUG', message, tags)
+    if (this.loglevel >= this.levels.DEBUG) {
+      return this.log('DEBUG', message, tags)
+    } else {
+      return ''
+    }
   }
   this.log = function (tag, message, tags) {
     let tadd = ''
