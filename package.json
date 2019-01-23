@@ -1,5 +1,5 @@
 {
-  "name": "log",
+  "name": "lib-log",
   "version": "1.0.0",
   "description": "A simple Logger with Options!",
   "main": "index.js",
