@@ -26,6 +26,13 @@ function Log (options) {
   }
   if (this.options.file) {
     this.fs = require('fs')
+    this.path = require('path')
+    this.options.file = this.path.resolve(this.options.file)
+    try {
+      this.fs.accessSync(this.options.file, this.fs.constants.R_OK | this.fs.constants.W_OK)
+    } catch (err) {
+      this.fs.writeFileSync(this.options.file, '')
+    }
   }
   this.info = function (message, tags) {
     if (this.loglevel >= this.levels.INFO) {

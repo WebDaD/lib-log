@@ -41,6 +41,6 @@ These Tags will be added to the line with octothorpes added.
   name: 'Name of App. Default: Name of BaseFolder',
   hostname: 'Server Hostname, Default: os.hostname()',
   file: 'File to Append Log to',
-  logLevel: 'Minimal LogLevel. Default: WARN'
+  loglevel: 'Minimal LogLevel. Default: WARN'
 }
 ```
