@@ -28,10 +28,17 @@ function Log (options) {
     this.fs = require('fs')
     this.path = require('path')
     this.options.file = this.path.resolve(this.options.file)
+    if (!this.fs.lstatSync(this.options.file).isFile()) {
+      throw new Error(this.options.file + ' is not a File...')
+    }
     try {
       this.fs.accessSync(this.options.file, this.fs.constants.R_OK | this.fs.constants.W_OK)
     } catch (err) {
-      this.fs.writeFileSync(this.options.file, '')
+      try {
+        this.fs.writeFileSync(this.options.file, '')
+      } catch (err) {
+        throw new Error('Could not Create File ' + this.options.file + '\n' + err.toString())
+      }
     }
   }
   this.info = function (message, tags) {
