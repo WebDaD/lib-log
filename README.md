@@ -1,7 +1,7 @@
 # log.js
 
 A real simple logger application.
-May Optional Log to A File and / or a Graylog-Server
+May Optional Log to A File.
 
 ## Installation
 
@@ -16,23 +16,12 @@ Note: The options Part may be omitted, as all parts are optional, but using the 
 
 ### Methods
 
-
-* `log.info('This is an Information' [, tags])`
-* `log.notice('This is a Notice' [, tags])`
-* `log.warn('This is a Warning' [, tags])`
-* `log.error('This is an Error' [, tags])`
-* `log.fatal('This is a Fatal Message' [, tags])`
-* `log.debug('This is a Debug Message' [, tags])`
-
-You may add Tags to a logline. These Tags may take the following forms:
-
-* string = 'tag'
-* string, seperated by whitespace = 'tag1 tag2 tag3'
-* string, seperated by comma = 'tag1,tag2,tag3'
-* array of strings = ['tag1', 'tag2', 'tag3']
-
-These Tags will be added to the line with octothorpes added.
-(#tag1 #tag2 #tag3) 
+* `log.info('This is an Information' )`
+* `log.notice('This is a Notice' )`
+* `log.warn('This is a Warning' )`
+* `log.error('This is an Error' )`
+* `log.fatal('This is a Fatal Message' )`
+* `log.debug('This is a Debug Message' )`
 
 ### Options
 

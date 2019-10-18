@@ -41,62 +41,50 @@ function Log (options) {
       }
     }
   }
-  this.info = function (message, tags) {
+  this.info = function (message) {
     if (this.loglevel >= this.levels.INFO) {
-      return this.log('INFO', message, tags)
+      return this.log('INFO', message)
     } else {
       return ''
     }
   }
-  this.notice = function (message, tags) {
+  this.notice = function (message) {
     if (this.loglevel >= this.levels.NOTICE) {
-      return this.log('NOTICE', message, tags)
+      return this.log('NOTICE', message)
     } else {
       return ''
     }
   }
-  this.fatal = function (message, tags) {
+  this.fatal = function (message) {
     if (this.loglevel >= this.levels.FATAL) {
-      return this.log('FATAL', message, tags)
+      return this.log('FATAL', message)
     } else {
       return ''
     }
   }
-  this.warn = function (message, tags) {
+  this.warn = function (message) {
     if (this.loglevel >= this.levels.WARN) {
-      return this.log('WARN', message, tags)
+      return this.log('WARN', message)
     } else {
       return ''
     }
   }
-  this.error = function (message, tags) {
+  this.error = function (message) {
     if (this.loglevel >= this.levels.ERROR) {
-      return this.log('ERROR', message, tags)
+      return this.log('ERROR', message)
     } else {
       return ''
     }
   }
-  this.debug = function (message, tags) {
+  this.debug = function (message) {
     if (this.loglevel >= this.levels.DEBUG) {
-      return this.log('DEBUG', message, tags)
+      return this.log('DEBUG', message)
     } else {
       return ''
     }
   }
-  this.log = function (tag, message, tags) {
-    let tadd = ''
-    if (typeof tags !== 'undefined') {
-      if (Array.isArray(tags)) {
-        tadd = ' #' + tags.join(' #')
-      } else if (tags.includes(' ')) {
-        tadd = ' #' + tags.split(' ').join(' #')
-      } else if (tags.includes(',')) {
-        tadd = ' #' + tags.split(',').join(' #')
-      } else {
-        tadd = ' #' + tags
-      }
-    }
-    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message + tadd
+  this.log = function (tag, message) {
+    let msg = this.getDate() + '\t' + this.hostname + '\t' + this.name + '\t' + tag + '\t' + message
     switch (tag) {
       case 'INFO':
         console.info(msg)
